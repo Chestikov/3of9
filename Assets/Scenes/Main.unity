@@ -560,10 +560,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9b02691cceb8f43a2c900ef9b99f3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cardPrefab: {fileID: 7066569107285038461, guid: 5298553a3e88a60459bc6a120bb167e7,
+  _cardViewPrefab: {fileID: 7066569107285038461, guid: 5298553a3e88a60459bc6a120bb167e7,
     type: 3}
   _cardDeckValues: {fileID: 11400000, guid: f85e86df369be1545b68b97155c6591e, type: 2}
   _level: {fileID: 1677950101}
+  _allowedRewards: {fileID: 11400000, guid: 904a2277939ef144480582246b9748c7, type: 2}
 --- !u!4 &742266477
 Transform:
   m_ObjectHideFlags: 0

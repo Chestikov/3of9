@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 1
   m_EditorClassIdentifier: 
   _number: 1
-  _rewardType: "\u0412\u0430\u043B\u044E\u0442\u0430 2"
+  _rewardType: 1
   _baseRewardQuantity: 10
   _modifier: {fileID: 11400000, guid: 964830c226730194eaa38ed6c3e336ef, type: 2}
+  _defaultModifierMultiplier: 1

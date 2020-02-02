@@ -12,13 +12,13 @@ public class CardView : MonoBehaviour
 
     private RectTransform _rectTransform;
 
-    public void Init(CardScriptableObject card, int playerLevel = 1)
+    public void Init(CardDeckView parentDeckView, CardScriptableObject card, int playerLevel = 1)
     {
         _card = card;
         _rectTransform = gameObject.GetComponent<RectTransform>();
 
         _numberText.text = _card.Number.ToString();
-        _rewardTypeText.text = _card.RewardType;
+        _rewardTypeText.text = parentDeckView.GetAllowedRewards().GetRewardName(card.RewardType);
         _rewardQuantityType.text = _card.GetRewardQuantity(playerLevel).ToString();
     }
 

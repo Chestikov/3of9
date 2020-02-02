@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1cb625780846684e95a19d1f3d701a4, type: 3}
-  m_Name: 7
+  m_Name: 8
   m_EditorClassIdentifier: 
-  _number: 7
-  _rewardType: "\u0417\u0430\u043A\u043B\u0438\u043D\u0430\u043D\u0438\u0435 1"
+  _number: 8
+  _rewardType: 6
   _baseRewardQuantity: 1
   _modifier: {fileID: 0}
+  _defaultModifierMultiplier: 1

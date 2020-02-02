@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Half Multiply", menuName = "Half Multiply", order = 54)]
-public class HalfMultiplyScriptableObject : Modifier
+public class HalfMultiplyScriptableObject : ModifierScriptableObject
 {
     public override int GetModifiedValue(int baseValue, int modifierValue)
     {
