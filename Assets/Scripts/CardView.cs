@@ -27,9 +27,4 @@ public class CardView : MonoBehaviour
         string quantityText = _card.GetRewardQuantity(playerLevel).ToString();
         _rewardQuantityType.text = quantityText;
     }
-
-    public void SetPosition(Vector2 position)
-    {
-        _rectTransform.anchoredPosition = position;
-    }
 }

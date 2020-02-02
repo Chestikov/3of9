@@ -37,11 +37,4 @@ public class CardDeckView : MonoBehaviour
             }
         }
     }
-
-    private Vector2 CalculateCardPosition(int index)
-    {
-        float posX = index % 3 * (_cardViewPrefab.GetComponent<RectTransform>().rect.width + 100);
-        float posY = index / 3 * (_cardViewPrefab.GetComponent<RectTransform>().rect.height + 50);
-        return new Vector2(-400, 250) + new Vector2(posX, -posY);
-    }
 }
