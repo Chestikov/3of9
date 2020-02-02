@@ -33,7 +33,6 @@ public class CardDeckView : MonoBehaviour
                 card.Init(this, _cardDeckValues.Cards[i], _level.GetLevel());
                 _level.LevelChanged += card.RefreshQuantityText;
 
-                card.SetPosition(CalculateCardPosition(i));
                 _cards.Add(card);
             }
         }
