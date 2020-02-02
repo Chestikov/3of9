@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CardDeck : MonoBehaviour
 {
-    [SerializeField] private Card _cardPrefab;
+    [SerializeField] private CardView _cardViewPrefab;
     [SerializeField] private CardDeckScriptableObject _cardDeckValues;
     [SerializeField] private Level _level;
 
-    private List<Card> _cards;
+    private List<CardView> _cards;
 
     private void Start()
     {
@@ -19,11 +19,11 @@ public class CardDeck : MonoBehaviour
     {
         if (_cardDeckValues != null)
         {
-            _cards = new List<Card>();
+            _cards = new List<CardView>();
 
             for (int i = 0; i < _cardDeckValues.Cards.Length; i++)
             {
-                var card = Instantiate(_cardPrefab.gameObject, gameObject.transform).GetComponent<Card>();
+                var card = Instantiate(_cardViewPrefab.gameObject, gameObject.transform).GetComponent<CardView>();
                 card.Init(_cardDeckValues.Cards[i], _level.GetLevel());
                 _level.LevelChanged += card.RefreshQuantityText;
 
@@ -35,8 +35,8 @@ public class CardDeck : MonoBehaviour
 
     private Vector2 CalculateCardPosition(int index)
     {
-        float posX = index % 3 * (_cardPrefab.GetComponent<RectTransform>().rect.width + 100);
-        float posY = index / 3 * (_cardPrefab.GetComponent<RectTransform>().rect.height + 50);
+        float posX = index % 3 * (_cardViewPrefab.GetComponent<RectTransform>().rect.width + 100);
+        float posY = index / 3 * (_cardViewPrefab.GetComponent<RectTransform>().rect.height + 50);
         return new Vector2(-400, 250) + new Vector2(posX, -posY);
     }
 }
