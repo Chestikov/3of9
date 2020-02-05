@@ -16,7 +16,12 @@ public class CardView : MonoBehaviour, IPointerClickHandler
 
     private Animator _animator;
 
+    public event Action<CardView> CardClicked;
+
+    public int Number => _card.Number;
     public bool IsFrontSided => _frontSide.activeSelf;
+
+    public CardScriptableObject Card => _card;
 
     public void Init(CardDeckView parentDeckView, CardScriptableObject card, int playerLevel = 1)
     {
@@ -34,7 +39,7 @@ public class CardView : MonoBehaviour, IPointerClickHandler
         _rewardQuantityType.text = quantityText;
     }
 
-    public void ChangeSide()
+    public void ChangeSideView()
     {
         _frontSide.gameObject.SetActive(!_frontSide.gameObject.activeSelf);
         _backSide.gameObject.SetActive(!_backSide.gameObject.activeSelf);
@@ -58,9 +63,6 @@ public class CardView : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (!IsFrontSided)
-        {
-            FlipToFrontSide();
-        }
+        CardClicked?.Invoke(this);
     }
 }

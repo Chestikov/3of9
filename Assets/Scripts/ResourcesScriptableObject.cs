@@ -2,10 +2,12 @@
 using System.Linq;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Rewards", menuName = "Rewards", order = 55)]
+[CreateAssetMenu(fileName = "New Resources", menuName = "Resources", order = 55)]
 public class ResourcesScriptableObject : ScriptableObject
 {
     [SerializeField] private List<Resource> _rewards;
+
+    public List<Resource> Rewards => _rewards;
 
     public string GetRewardName(ResourceType rewardType)
     {

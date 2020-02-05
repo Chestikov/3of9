@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: 8
   m_EditorClassIdentifier: 
   _number: 8
-  _rewardType: 6
-  _baseRewardQuantity: 1
+  _reward:
+    _value: 1
+    _resourceType: 6
   _modifier: {fileID: 0}
   _defaultModifierMultiplier: 1

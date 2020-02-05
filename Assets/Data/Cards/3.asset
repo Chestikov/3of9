@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: 3
   m_EditorClassIdentifier: 
   _number: 3
-  _rewardType: 1
-  _baseRewardQuantity: 100
+  _reward:
+    _value: 100
+    _resourceType: 1
   _modifier: {fileID: 11400000, guid: 964830c226730194eaa38ed6c3e336ef, type: 2}
   _defaultModifierMultiplier: 1

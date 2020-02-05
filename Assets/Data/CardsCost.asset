@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cardsCost:
   - _value: 0
-    _resource: 0
+    _resourceType: 0
   - _value: 0
-    _resource: 0
+    _resourceType: 0
   - _value: 0
-    _resource: 0
+    _resourceType: 0
   - _value: 1
-    _resource: 0
+    _resourceType: 0
   - _value: 3
-    _resource: 0
+    _resourceType: 0

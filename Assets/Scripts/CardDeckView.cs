@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
@@ -12,15 +14,34 @@ public class CardDeckView : MonoBehaviour
     [SerializeField] private CardDeckScriptableObject _cardDeckValues;
     [SerializeField] private Level _level;
     [SerializeField] private ResourcesScriptableObject _rewardsCatalog;
+    [SerializeField] private Dealer _dealer;
 
     private List<CardView> _cards;
     private Animator _animator;
+    private bool _readyToPlay = false;
+
+    public int CardsOpened => _cards.Where(x => x.IsFrontSided == true).Count();
 
     private void Start()
     {
         Init();
 
-        DealCards();
+        StartCoroutine(StartRound());
+    }
+
+    private void OnEnable()
+    {
+        _dealer.RoundEnded += StartNewRound;
+    }
+
+    private void OnDisable()
+    {
+        foreach (var card in _cards)
+        {
+            card.CardClicked -= OnCardClicked;
+        }
+
+        _dealer.RoundEnded -= StartNewRound;
     }
 
     public void Init()
@@ -37,6 +58,7 @@ public class CardDeckView : MonoBehaviour
                 card.Init(this, _cardDeckValues.Cards[i], _level.GetLevel());
                 _level.LevelChanged += card.RefreshQuantityText;
 
+                card.CardClicked += OnCardClicked;
                 _cards.Add(card);
             }
         }
@@ -47,7 +69,52 @@ public class CardDeckView : MonoBehaviour
         return _rewardsCatalog;
     }
 
-    public void ShowCardsFrontSide()
+    public IEnumerator StartRound()
+    {
+        SortCards();
+
+        DealCards();
+        yield return new WaitForSeconds(2);
+
+        ShowCardsFrontSide();
+        yield return new WaitForSeconds(3);
+
+        ShowCardsBackSide();
+        yield return new WaitForSeconds(1);
+
+        CollectCardsInDeck();
+        yield return new WaitForSeconds(2);
+
+        ShuffleCards();
+
+        DealCards();
+
+        _readyToPlay = true;
+    }
+
+    public IEnumerator RestartRound()
+    {
+        yield return new WaitForSeconds(2);
+
+        ShowCardsBackSide();
+        yield return new WaitForSeconds(1);
+
+        CollectCardsInDeck();
+        yield return new WaitForSeconds(2);
+
+        SortCards();
+
+        StartCoroutine(StartRound());
+    }
+
+    public void StartNewRound()
+    {
+        _readyToPlay = false;
+
+        StartCoroutine(RestartRound());
+    }
+
+    private void ShowCardsFrontSide()
     {
         foreach (var card in _cards)
         {
@@ -55,7 +122,7 @@ public class CardDeckView : MonoBehaviour
         }
     }
 
-    public void ShowCardsBackSide()
+    private void ShowCardsBackSide()
     {
         foreach (var card in _cards)
         {
@@ -63,12 +130,21 @@ public class CardDeckView : MonoBehaviour
         }
     }
 
-    public void CollectCardsInDeck()
+    private void CollectCardsInDeck()
     {
         _animator.SetTrigger("CollectCards");
     }
 
-    public void ShuffleCards()
+    private void SortCards()
+    {
+        for (int i = 0; i < _cards.Count; i++)
+        {
+            int cardNumber = _cards[i].Number - 1;
+            _cards[i].transform.SetSiblingIndex(cardNumber);
+        }
+    }
+
+    private void ShuffleCards()
     {
         Random random = new Random();
         
@@ -86,8 +162,21 @@ public class CardDeckView : MonoBehaviour
         }
     }
 
-    public void DealCards()
+    private void DealCards()
     {
         _animator.SetTrigger("DealCards");
+    }
+
+    private void OnCardClicked(CardView cardView)
+    {
+        if (_readyToPlay && _dealer.CanOpenNextCard(CardsOpened))
+        {
+            cardView.FlipToFrontSide();
+
+            int playerLevel = _level.GetLevel();
+            ResourceAmount reward = cardView.Card.GetResourceAmount(playerLevel);
+
+            _dealer.GiveReward(reward);
+        }
     }
 }

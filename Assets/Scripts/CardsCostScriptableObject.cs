@@ -4,9 +4,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Cards Cost", menuName = "Cards Cost", order = 56)]
 public class CardsCostScriptableObject : ScriptableObject
 {
-    [SerializeField] List<CardCost> _cardsCost;
+    [SerializeField] List<ResourceAmount> _cardsCost;
 
-    public CardCost GetCardCost(int cardNumber)
+    public ResourceAmount GetCardCost(int cardNumber)
     {
         int cardIndex = cardNumber - 1;
 
@@ -14,9 +14,9 @@ public class CardsCostScriptableObject : ScriptableObject
 
         if (cardIndexInBounds)
         {
-            return _cardsCost[cardNumber];
+            return _cardsCost[cardIndex];
         }
         
-        return new CardCost();
+        return new ResourceAmount();
     }
 }
