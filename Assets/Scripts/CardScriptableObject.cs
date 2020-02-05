@@ -4,13 +4,13 @@
 public class CardScriptableObject : ScriptableObject
 {
     [SerializeField] private int _number;
-    [SerializeField] private RewardType _rewardType;
+    [SerializeField] private ResourceType _rewardType;
     [SerializeField] private int _baseRewardQuantity;
     [SerializeField] private ModifierScriptableObject _modifier;
     [SerializeField] private int _defaultModifierMultiplier = 1;
 
     public int Number => _number;
-    public RewardType RewardType => _rewardType;
+    public ResourceType RewardType => _rewardType;
 
     public int GetRewardQuantity(int playerLevel)
     {

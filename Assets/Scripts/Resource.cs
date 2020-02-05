@@ -2,11 +2,11 @@
 using UnityEngine;
 
 [Serializable]
-public class Reward
+public class Resource
 {
-    [SerializeField] private RewardType _type;
+    [SerializeField] private ResourceType _type;
     [SerializeField] private string _name;
 
-    public RewardType Type => _type;
+    public ResourceType Type => _type;
     public string Name => _name;
 }

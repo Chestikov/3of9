@@ -11,7 +11,7 @@ public class CardDeckView : MonoBehaviour
     [SerializeField] private CardView _cardViewPrefab;
     [SerializeField] private CardDeckScriptableObject _cardDeckValues;
     [SerializeField] private Level _level;
-    [SerializeField] private RewardsScriptableObject _rewardsCatalog;
+    [SerializeField] private ResourcesScriptableObject _rewardsCatalog;
 
     private List<CardView> _cards;
     private Animator _animator;
@@ -42,7 +42,7 @@ public class CardDeckView : MonoBehaviour
         }
     }
 
-    public RewardsScriptableObject GetRewardsCatalog()
+    public ResourcesScriptableObject GetRewardsCatalog()
     {
         return _rewardsCatalog;
     }
