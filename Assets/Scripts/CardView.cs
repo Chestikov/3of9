@@ -18,17 +18,13 @@ public class CardView : MonoBehaviour, IPointerClickHandler
 
     public bool IsFrontSided => _frontSide.activeSelf;
 
-    private void Start()
-    {
-        _animator = GetComponent<Animator>();
-    }
-
     public void Init(CardDeckView parentDeckView, CardScriptableObject card, int playerLevel = 1)
     {
         _card = card;
+        _animator = GetComponent<Animator>();
 
         _numberText.text = _card.Number.ToString();
-        _rewardTypeText.text = parentDeckView.GetAllowedRewards().GetRewardName(card.RewardType);
+        _rewardTypeText.text = parentDeckView.GetRewardsCatalog().GetRewardName(card.RewardType);
         _rewardQuantityType.text = _card.GetRewardQuantity(playerLevel).ToString();
     }
 
@@ -46,12 +42,18 @@ public class CardView : MonoBehaviour, IPointerClickHandler
 
     public void FlipToBackSide()
     {
-        _animator.SetTrigger("FlipToBack");
+        if (IsFrontSided)
+        {
+            _animator.SetTrigger("FlipToBack");
+        }
     }
 
     public void FlipToFrontSide()
     {
-        _animator.SetTrigger("FlipToFront");
+        if (!IsFrontSided)
+        {
+            _animator.SetTrigger("FlipToFront");
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)

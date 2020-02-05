@@ -653,6 +653,7 @@ GameObject:
   - component: {fileID: 742266477}
   - component: {fileID: 742266476}
   - component: {fileID: 742266478}
+  - component: {fileID: 742266479}
   m_Layer: 0
   m_Name: CardDeck
   m_TagString: Untagged
@@ -676,7 +677,7 @@ MonoBehaviour:
     type: 3}
   _cardDeckValues: {fileID: 11400000, guid: f85e86df369be1545b68b97155c6591e, type: 2}
   _level: {fileID: 1677950101}
-  _allowedRewards: {fileID: 11400000, guid: 904a2277939ef144480582246b9748c7, type: 2}
+  _rewardsCatalog: {fileID: 11400000, guid: 904a2277939ef144480582246b9748c7, type: 2}
 --- !u!224 &742266477
 RectTransform:
   m_ObjectHideFlags: 0
@@ -716,10 +717,29 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 350, y: 200}
-  m_Spacing: {x: 50, y: 50}
+  m_CellSize: {x: 0, y: 0}
+  m_Spacing: {x: 5, y: 5}
   m_Constraint: 1
   m_ConstraintCount: 3
+--- !u!95 &742266479
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742266475}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3da1ac8a79050804780451745b0eb85c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &806587227
 GameObject:
   m_ObjectHideFlags: 0

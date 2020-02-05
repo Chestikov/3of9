@@ -2,28 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = System.Random;
 
+[RequireComponent(typeof(GridLayoutGroup))]
+[RequireComponent(typeof(Animator))]
 public class CardDeckView : MonoBehaviour
 {
     [SerializeField] private CardView _cardViewPrefab;
     [SerializeField] private CardDeckScriptableObject _cardDeckValues;
     [SerializeField] private Level _level;
-    [SerializeField] private RewardsScriptableObject _allowedRewards;
+    [SerializeField] private RewardsScriptableObject _rewardsCatalog;
 
     private List<CardView> _cards;
+    private Animator _animator;
 
     private void Start()
     {
-        FillDeck();
+        Init();
+
+        DealCards();
     }
 
-    public RewardsScriptableObject GetAllowedRewards()
+    public void Init()
     {
-        return _allowedRewards;
-    }
+        _animator = GetComponent<Animator>();
 
-    private void FillDeck()
-    {
         if (_cardDeckValues != null)
         {
             _cards = new List<CardView>();
@@ -37,5 +40,54 @@ public class CardDeckView : MonoBehaviour
                 _cards.Add(card);
             }
         }
+    }
+
+    public RewardsScriptableObject GetRewardsCatalog()
+    {
+        return _rewardsCatalog;
+    }
+
+    public void ShowCardsFrontSide()
+    {
+        foreach (var card in _cards)
+        {
+            card.FlipToFrontSide();
+        }
+    }
+
+    public void ShowCardsBackSide()
+    {
+        foreach (var card in _cards)
+        {
+            card.FlipToBackSide();
+        }
+    }
+
+    public void CollectCardsInDeck()
+    {
+        _animator.SetTrigger("CollectCards");
+    }
+
+    public void ShuffleCards()
+    {
+        Random random = new Random();
+        
+        int cardsQuantity = _cards.Count;
+
+        while (cardsQuantity > 1)
+        {
+            cardsQuantity--;
+            int index = random.Next(cardsQuantity + 1);
+            CardView tempValue = _cards[index];
+            _cards[index] = _cards[cardsQuantity];
+            _cards[cardsQuantity] = tempValue;
+
+            _cards[cardsQuantity].transform.SetSiblingIndex(cardsQuantity);
+        }
+    }
+
+    public void DealCards()
+    {
+        _animator.SetTrigger("DealCards");
     }
 }

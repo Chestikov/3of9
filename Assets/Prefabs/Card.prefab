@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 4685605596143425083}
   - component: {fileID: 7066569107285038461}
   - component: {fileID: 1356441659}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -398,13 +398,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2488569230997871010}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: BackSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2488569230997871010
 RectTransform:
   m_ObjectHideFlags: 0
@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 7162762422297685343}
   - component: {fileID: 2215620571270682368}
   - component: {fileID: 7596838078162309276}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: BackImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -513,7 +513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7674342989318362738
 RectTransform:
   m_ObjectHideFlags: 0
